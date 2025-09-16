@@ -16,14 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
-
+from django.urls import path
+from .views import ProductFormView, ProductListView, ProductListAPI
 
 urlpatterns = [
-    path("", include("products.urls")),
-    path("admin/", admin.site.urls),
-    path("usuarios/", include("users.urls")),
-    path("pedidos/", include("orders.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("", ProductListView.as_view(), name="list_product"),
+    path("api/", ProductListAPI.as_view(), name="list_product_api"),
+    path("agregar/", ProductFormView.as_view(), name="add_product"),
+]
