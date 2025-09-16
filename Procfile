@@ -1,1 +1,1 @@
-web: gunicorn project2_platzy.wsgi:application
+web: gunicorn coffe_shop.wsgi:application
