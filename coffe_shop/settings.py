@@ -28,12 +28,9 @@ SECRET_KEY = "django-insecure-1+ky(!m6q2ad*sp#+qd-omds4e%6%yj57*2nfw6qse0ae-wk4@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-    # "coffe-shop-production.eba-zdivq3b2.us-east-2.elasticbeanstalk.com",
-    # "localhost",
-    # "127.0.0.1",
-    # "172.31.17.76",
-
+ALLOWED_HOSTS = [
+    "coffe-shop-production2.eba-ip9ckpbt.us-east-2.elasticbeanstalk.com"
+]
 
 
 # Application definition
@@ -88,20 +85,18 @@ WSGI_APPLICATION = "coffe_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": env.db('DJANGO_DB_URL')
-}
+DATABASES = {"default": env.db("DJANGO_DB_URL")}
 
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
 #         "NAME": "postgres",
-#         "USER": env.str("DJANGO_DB_USER"),
 #         "HOST": "db-curso-django.ct2w4e0ik5zx.us-east-2.rds.amazonaws.com",
 #         "PORT": "5432",
+#         "USER": env.str("DJANGO_DB_USER"),
 #         "PASSWORD": env.str("DJANGO_DB_PASSWORD"),
-#     },
-#     env.db('DJANGO_DB_URL')
+#     }
+#     env:db("DJANGO_DB_URL")
 # }
 
 # Password validation
