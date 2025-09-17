@@ -12,12 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
-import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -28,9 +27,7 @@ SECRET_KEY = "django-insecure-1+ky(!m6q2ad*sp#+qd-omds4e%6%yj57*2nfw6qse0ae-wk4@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "coffe-shop-production2.eba-ip9ckpbt.us-east-2.elasticbeanstalk.com"
-]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -85,19 +82,12 @@ WSGI_APPLICATION = "coffe_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {"default": env.db("DJANGO_DB_URL")}
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "postgres",
-#         "HOST": "db-curso-django.ct2w4e0ik5zx.us-east-2.rds.amazonaws.com",
-#         "PORT": "5432",
-#         "USER": env.str("DJANGO_DB_USER"),
-#         "PASSWORD": env.str("DJANGO_DB_PASSWORD"),
-#     }
-#     env:db("DJANGO_DB_URL")
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -150,10 +140,10 @@ LOGOUT_REDIRECT_URL = "list_product"
 
 LOGIN_URL = "login"
 
-REST_FRAMEWORK = {
+# REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
-}
+#     "DEFAULT_PERMISSION_CLASSES": [
+#         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+#     ]
+# }
