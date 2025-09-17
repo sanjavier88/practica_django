@@ -27,6 +27,6 @@ class CreateOrderProductsView(LoginRequiredMixin, CreateView):
             user=self.request.user,
         )
         form.instance.order = order
-        form.instance.quantif = 1
+        form.instance.quantity = 1
         form.save()
         return super().form_valid(form)
